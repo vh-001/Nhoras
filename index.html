@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon Timer</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Henny+Penny&family=Kalam:wght@300;400;700&family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+      body {
+    background: #250404;
+    color: #fff;
+    font-family: "Playfair Display", serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+}
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+.time-box {
+    background: #232323;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px #000a;
+    width: 160px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.calendar-leaf {
+    position: relative;
+    width: 140px;
+    height: 120px;
+    background: #2c2c2c;
+    border-radius: 16px 16px 32px 32px;
+    box-shadow: 0 8px 24px #0007;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border-top: 8px solid #ffb300;
+    border-bottom: 3px solid #111;
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+.time-value {
+    font-size: 4.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+}
+.time-label {
+    font-size: 1.3rem;
+    color: #ffb300;
+    letter-spacing: 1px;
+}
+.footer {
+    margin-top: 40px;
+    color: #ffb300;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+        /* Folha caindo */
+        /* ...existing code... */
+.calendar-leaf {
+    padding: 15px;
+    position: relative;
+    width: 90px;
+    height: 80px;
+    background: #2c2c2c;
+    border-radius: 10px 10px 20px 20px;
+    box-shadow: 0 6px 18px #0007;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border-top: 6px solid #ffb300;
+    border-bottom: 2px solid #111;
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+.leaf-fall {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #2c2c2c;
+    border-radius: 10px 10px 20px 20px;
+    border-top: 6px solid #ffb300;
+    border-bottom: 2px solid #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: #fff;
+    animation: calendar-fall 0.7s cubic-bezier(.6,1.5,.6,1) forwards;
+    z-index: 10;
+}
+@keyframes calendar-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1;}
+    80% { opacity: 1;}
+    100% { transform: translateY(120px) rotate(18deg) scale(0.9); opacity: 0;}
+}
+/* ...existing code... */
+        .leaf {
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            width: 30px;
+            height: 30px;
+            background: url('https://cdn.pixabay.com/photo/2013/07/12/13/58/leaf-147280_1280.png') no-repeat center/contain;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall 1s linear forwards;
+            z-index: 1;
+        }
+        @keyframes fall {
+            0% {
+                transform: translate(-50%, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, 90px) rotate(90deg) scale(0.7);
+                opacity: 0;
+            }
+        }
+        .footer {
+            margin-top: 40px;
+            color: #ffb300;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        /* ...seu CSS existente... */
+
+/* Responsividade para celular */
+@media (max-width: 700px) {
+  .timer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .time-box {
+    width: 44vw;
+    max-width: 160px;
+    height: 90px;
+  }
+  .calendar-leaf {
+    width: 38vw;
+    max-width: 120px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+  .time-value {
+    font-size: 1.3rem;
+  }
+  .time-label {
+    font-size: 1rem;
+  }
+  h1 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .footer {
+    font-size: 1rem;
+    padding: 0 5px;
+    text-align: center;
+  }
+}
+    </style>
+</head>
+<body>
+    <h1>O Marcador da Nossa História</h1>    
+    <div class="timer">
+    <div class="time-box" id="years-box">
+        <div class="calendar-leaf"><span class="time-value" id="years">00</span></div>
+        <span class="time-label">YEARS</span>
+    </div>
+    <div class="time-box" id="months-box">
+        <div class="calendar-leaf"><span class="time-value" id="months">00</span></div>
+        <span class="time-label">MONTHS</span>
+    </div>
+    <div class="time-box" id="days-box">
+        <div class="calendar-leaf"><span class="time-value" id="days">00</span></div>
+        <span class="time-label">DAYS</span>
+    </div>
+    <div class="time-box" id="hours-box">
+        <div class="calendar-leaf"><span class="time-value" id="hours">00</span></div>
+        <span class="time-label">HOURS</span>
+    </div>
+    <div class="time-box" id="minutes-box">
+        <div class="calendar-leaf"><span class="time-value" id="minutes">00</span></div>
+        <span class="time-label">MINUTES</span>
+    </div>
+    <div class="time-box" id="seconds-box">
+        <div class="calendar-leaf"><span class="time-value" id="seconds">00</span></div>
+        <span class="time-label">SECONDS</span>
+    </div>
+</div>
+    <div class="footer">
+        Agora Podemos Consultar em tempo real!
+<script>
+const startDate = new Date('2024-12-11T22:10:00'); // coloque aqui a data de início desejada
+
+const ids = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'];
+const prevValues = {
+    years: null, months: null, days: null, hours: null, minutes: null, seconds: null
+};
+
+function getTimeParts() {
+    const now = new Date();
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
+    let hours = now.getHours() - startDate.getHours();
+    let minutes = now.getMinutes() - startDate.getMinutes();
+    let seconds = now.getSeconds() - startDate.getSeconds();
+
+    if (seconds < 0) { seconds += 60; minutes--; }
+    if (minutes < 0) { minutes += 60; hours--; }
+    if (hours < 0) { hours += 24; days--; }
+    if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+    }
+    if (months < 0) { months += 12; years--; }
+
+    return {
+        years: String(years).padStart(2, '0'),
+        months: String(months).padStart(2, '0'),
+        days: String(days).padStart(2, '0'),
+        hours: String(hours).padStart(2, '0'),
+        minutes: String(minutes).padStart(2, '0'),
+        seconds: String(seconds).padStart(2, '0')
+    };
+}
+
+function animateLeaf(id, newValue) {
+    const box = document.getElementById(id + '-box');
+    const leaf = box.querySelector('.calendar-leaf');
+    const oldValue = leaf.querySelector('.time-value').textContent;
+
+    if (oldValue !== newValue) {
+        // Cria folha animada com valor antigo
+        const falling = document.createElement('div');
+        falling.className = 'leaf-fall';
+        falling.textContent = oldValue;
+        box.appendChild(falling);
+
+        // Troca valor da folha principal
+        leaf.querySelector('.time-value').textContent = newValue;
+
+        // Remove folha animada após animação
+        setTimeout(() => {
+            falling.remove();
+        }, 700);
+    }
+}
+
+function updateTimer() {
+    const parts = getTimeParts();
+    ids.forEach(id => {
+        animateLeaf(id, parts[id]);
+    });
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+</body>
+</html>
